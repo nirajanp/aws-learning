@@ -83,6 +83,21 @@ IAM users and groups are created in a global fashion. IAM does not require regio
   12. Download the CSV if you auto-gen the pw. OR, you can also send email to a particular user if you are creating USER for someone else. 
   13. After creating a user you can review their permissions, groups, tags under USER. You can also set alias for User because AWS generates a number which can be hard to remember. 
 
-Why do we want to create a IAM user? 
-Because root user have all the permission you want in your account. You can do anything you want, therefore it can be dangerous account to use. Better way is to create administrator account. 
+## IAM Policies inheritance
+Let's imagine we have three developers Alice, Bob, and Charles, and we attach a policy at group level. In that case policy will get applied to all the members of the groups. 
+
+### IAM Policies Structure
+  * Consists of 
+    * __Version__: policy language version, always include "2012-10-17"
+    * __Id__: an identifier for the policy(optional)
+    * __Statement__: one of more individual statements(required) 
+  * __Statements__ consists of
+    * __Sid__: identifier for the statement(optinal)
+    * __Effect__: whether the statement allows or denies access(Allow, Deny)
+    * __Principal__: account/user/role to which policy applied to.
+    * __Condition__: conditions for when this policy is in effect(optional)
+
+We can add or remove policies to the user or user groups from policies tab on left hand side. 
+
+
 
