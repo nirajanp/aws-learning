@@ -55,9 +55,34 @@ __Most AWS services are Region-scoped:__
 
 ### IAM: Permissions
 #### Why do we create users and why do we create groups?
-Because we wwant to allow them to use our AWS accounts and to allow them to do so, we have to give them permissions. So users or groups can be assigned.
+Because we want to allow them to use our AWS accounts and to allow them to do so, we have to give them permissions. So users or groups can be assigned.
 
   * __Users or Groups__ can be assigned JSON documents called IAM policies.
   * These policies define the permissions of the users
   * In AWS you apply the __least privilege principle__: don't give more permissions that a user needs. 
+
+### Why do we want to create a IAM user? 
+Because root user have all the permission you want in your account. You can do anything you want, therefore it can be dangerous account to use. Better way is to create administrator account. 
+
+## IAM hands on
+### How to create a IAM admin user?
+IAM users and groups are created in a global fashion. IAM does not require region selection. 
+  1. Search for IAM and GOTO IAM dashboard.
+  2. Click Users.
+  3. Click on Add Users
+  4. Fill username feild.
+  5. For AWS access type, select __Password - AWS Management Console Access__
+  6. We don't require password reset.
+ Now we need to add a user to group. 
+  7. So create a group. 
+  8. Name the group.
+  9. For admin group select group policy __Administrator Access__
+  In AWS there are Tags everywhere, they are information, that can help you track, organize or controll access for users.
+  10. Next and Review
+  11. Review and Create User
+  12. Download the CSV if you auto-gen the pw. OR, you can also send email to a particular user if you are creating USER for someone else. 
+  13. After creating a user you can review their permissions, groups, tags under USER. You can also set alias for User because AWS generates a number which can be hard to remember. 
+
+Why do we want to create a IAM user? 
+Because root user have all the permission you want in your account. You can do anything you want, therefore it can be dangerous account to use. Better way is to create administrator account. 
 
