@@ -142,8 +142,18 @@ After creating users and groups, we need to protect users and groups. For this t
 We are going to at first setup password policy for out account. 
 
 * First we are going to change password policy
-  * IAM service >> Accounts Settings >> Change password policy 
+  1. IAM service 
+  2. Accounts Settings 
+  3. Change password policy 
 
 * Second we are going to do is setup MFA for _root account_
-  * Go to your root account >> click on _username_ >> Security credentials >> MFA >> __Activate MFA__ >> Use app you like for 2FA >> Scan the QR code on AWS root account from your phone >> It will add the account >> Get two codes consecutively and plug into AWS root account. 
+  1. Go to your root account
+  2. Click on _username_ 
+  3. Security credentials 
+  4. MFA 
+  5. __Activate MFA__ 
+  6. Use app you like for 2FA 
+  7. Scan the QR code on AWS root account from your phone 
+  8. It will add the account 
+  9. Get two codes consecutively and plug into AWS root account. 
  
