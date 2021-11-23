@@ -99,5 +99,51 @@ Let's imagine we have three developers Alice, Bob, and Charles, and we attach a 
 
 We can add or remove policies to the user or user groups from policies tab on left hand side. 
 
+## IAM - Password Policy
+After creating users and groups, we need to protect users and groups. For this there are two defense mechanish:
+### First One - Strong Password
+  * __Strong password__: stronger pw you create higher security for your account.
+  * In __AWS__, you can setup a password policy with different options
+    * Set a minimum password length
+    * Require specific characters types:
+      * including uppercase
+      * lowercase letters
+      * numbers
+      * non-alphanumeric characters
+    * Allow all IAM users to change their own passwords
+    * Require users to change password after some time (password expiration)
+    * Prevent password re-use
 
+### Second One - Multi Factor Authentication - MFA
+  * Users have access to your account and can possibly change configurations or delete resources in your AWS account.
+  * You absolutely want to protect your __Root Accounts__ and hopefully all __IAM__ users.
+  * __MFA__ = password you know + security device you own.
+  * Main benefit of MFA:
+    <u>if a password is stolen or hacked, the account is not comprimised</u>
 
+### MFA devices options in AWS - __IMPORTANT FOR EXAM__
+
+#### Virtual MFA device
+  * Google Authenticator (phone only)
+  * Authy (multi-device), ex: phone and computer
+    * For Authy have support for multiple tokens on a single device.
+
+#### Universal 2nd Factor (U2F) Security Key
+  * Supports for multiple root and IAM users using a single security key
+  * YubiKey by Yubico (Third-party)
+
+#### Hardware Key Fob MFA Device
+  * Provided by Gemalto (Third-party)
+
+#### Hardware Key Fob MFA Device for AWS GovCloud(US)
+  * Provided by SurePassID (Third-party)
+
+### IAM MFA Hands On
+We are going to at first setup password policy for out account. 
+
+* First we are going to change password policy
+  * IAM service >> Accounts Settings >> Change password policy 
+
+* Second we are going to do is setup MFA for _root account_
+  * Go to your root account >> click on _username_ >> Security credentials >> MFA >> __Activate MFA__ >> Use app you like for 2FA >> Scan the QR code on AWS root account from your phone >> It will add the account >> Get two codes consecutively and plug into AWS root account. 
+ 
