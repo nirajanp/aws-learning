@@ -241,3 +241,24 @@ We are going to at first setup password policy for out account.
     8. Add tags info, if you like.
     9. Click button __Next Review__ 
     10. Give name to this role and __Create Role__
+
+## IAM Security Tools
+
+### __IAM Credentials Report (account-level)__
+  * This report will contain list of all your account's user and the status of their various credentials.
+
+### __IAM Access Advisor (user-level)__
+  * Access advisor shows the service permissions granted to a user and when those services were last accessed. 
+  * Using this tool we are able to see which permission are not used and reduce the permission the user can get to be inlined with the principle of least-privilege.
+
+## IAM Security Tools Hands on
+
+### __IAM Credentials Report (account-level)__
+  1. On the bottom left of IAM service click on __Credential Report__.
+  2. Click __Download Report__ which will be a .csv file.
+
+### __IAM Access Advisor (user-level)__
+  1. On IAM service click on __Users__
+  2. Click on user you want to find out what permission user has, for example _nirajan_ in my case.
+  3. Click on Access Advisor. This is going to show me services I have used. 
+  4. This will show AWS services this user is using. If you want inline with the principle of least-privilege, then maybe it makes sense to remove the AWS services the user has not accessed. 
