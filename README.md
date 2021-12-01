@@ -262,3 +262,15 @@ We are going to at first setup password policy for out account.
   2. Click on user you want to find out what permission user has, for example _nirajan_ in my case.
   3. Click on Access Advisor. This is going to show me services I have used. 
   4. This will show AWS services this user is using. If you want inline with the principle of least-privilege, then maybe it makes sense to remove the AWS services the user has not accessed. 
+
+## IAM Guidelines and Best Practices
+
+  * Don't use the root account except for AWS account setup.
+  * One physical user = One AWS user. For ex, if a friend of yours want to use AWS - do not give them root account instead create another user for them.
+  * __Assign users to groups__ and assign permissions to groups to make sure that security is managed at group level. 
+  * Create a __strong password policy__.
+  * Use and enforce the use of __Multi Factor Authentication (MFA)__ to make your account safer from hackers.
+  * Create and use __Roles__ for giving permission to AWS services. 
+  * Use Access Keys for Programmatic Access (CLI/SDK)
+  * To audit permission of your account use IAM __Credentials Report__ and __IAM Access Analyzer__
+  * __Never Share IAM users & Access Keys__
