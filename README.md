@@ -212,12 +212,32 @@ We are going to at first setup password policy for out account.
 ### To list users
   Use command `aws iam list-users` to list all your users 
 
+## AWS CloudShell
 
+  * AWS __CloudShell__ is not available in all the regions. It does same work as AWS CLI. To check if your region is available or not check out [here](https://docs.aws.amazon.com/general/latest/gr/cloudshell.html)
+  * By default __CloudShell__ will use the IAM user you are in, you will not have to configure it like you did in _Terminal_
+  * You can also create files or directories in your __CloudShell__ like in your _Terminal_
+  * You could also upload or download the files that you have in your __CloudShell__, create multiple __CloudShell__ tabs.
 
+## IAM Roles for AWS Services
 
+  * Some AWS services will need to perform actions on our, i.e. IAM user's, behalf on our account.
+  * For this to do action, user's will need some kind of permission. So we to assign permession to AWS services, and we can achieve that by creating an IAM roles. So these IAM role will be just like a user, but they are intended to be used not by physical people, but instead they will be used by AWS services. 
+    * For example, we are going to create a EC2 instance. An EC2 instance is just like a virtual server. So, this EC2 instance may want to perform some actions on AWS and to do so, we need to give permissions to our EC2 instance. We can do that by creating IAM roles and together they will make one entity. And together, once the EC2 instance is trying to access some information from AWS, then it will use the IAM Role. And if the permission assigned to the IAM role is correct then we are going to get access to the call we're trying to make. 
+  * Common Roles includes:
+      * EC2 instance roles
+      * Lambda Function Roles
+      * Roles for CloudFormation
 
-
-
-
-
- 
+## IAM Roles Hands On
+  * When you go to your IAM user and use IAM service, on left hand side you can see __Roles__
+    1. Click on __Roles__
+    2. Create role
+    3. Select __AWS service__
+    4. Select role you want to create, for example __EC2__
+    5. Click button __Next Permissions__
+    6. Attach any permission policies you want to give to this role.
+    7. Click button __Next Tags__ 
+    8. Add tags info, if you like.
+    9. Click button __Next Review__ 
+    10. Give name to this role and __Create Role__
