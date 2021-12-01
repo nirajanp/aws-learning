@@ -314,29 +314,18 @@ _________________________________________________________________________
     * The __EC2 User Data Script__ runs with the root user so any command you have will have pseudo rights.
 
 ### EC2 instance types: example
- ________________________________________________________________________________
-|Instance     vCpu  Mem(GiB)   Storage               Network       EBS Bandwidth |
-|                                                  Performance         (Mbps)    |
-|________________________________________________________________________________|
-|t2.micro      1     1         EBS-Only          Low to Moderate                 |
-|t2.xlarge     4     16        EBS-Only              Moderate                    |
-|c5d.4xlarge   16    32        1x400 NVMe SSD     Up to 10 Gbps       4750       |
-|________________________________________________________________________________|
+  __t2.micro instance is part of the AWS free tier (up to 750 hours per month), used in this course__
 
-  These are just few examples there are many more with different configurations. 
-
-  __t2.micro is part of the AWS free tier (up to 750 hours per month), used in this course__
-
-  ## Hands-On: Launching an EC2 Instance running Linux.
+## Hands-On: Launching an EC2 Instance running Linux
 
   * We'll br launching our first virtual server using AWS Console
   * This will allow us to get high-level approach to understanding some parameters for the configuration of your EC2 instances. 
   * Then we will use EC2 user data script to configure our web server.
   * We will learn how to start/stop/terminate our instance.
 
-  ### Create an EC2 Instance with EC2 User Data to have a website.
+  ### Create an EC2 Instance with EC2 User Data to have a website
 
-    1. Search for EC2 service and open EC2 console.
+    1. Search for EC2 service and open EC2 console
     2. Click __Instances__ on left hand side.
     3. __Launch Instances__
     4. __Choose Amazon Machine Image__, 'free-tier eligible' in my case, & next to instance type.
