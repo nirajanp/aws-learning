@@ -274,3 +274,81 @@ We are going to at first setup password policy for out account.
   * Use Access Keys for Programmatic Access (CLI/SDK)
   * To audit permission of your account use IAM __Credentials Report__ and __IAM Access Analyzer__
   * __Never Share IAM users & Access Keys__
+
+_________________________________________________________________________
+
+## EC2 Section
+
+### What is Amazon EC2?
+
+  * __EC2__ is one of the most popular of AWS' offering.
+  * __EC2__ = Elastic Compute Cloud = This is the way to do infrastructure as a Service in AWS.
+  * __EC2__ is not just one service. It is composed of many things at a high level, such as:
+    * Renting virtual machines (EC2 instances)
+    * Storing data on virtual drive (EBS volumes)
+    * Distributing load across machines (ELB: Elastic Load Balancer)
+    * Scaling the services using an auto-scaling group (ASG)
+  * Knowing EC2 is fundamental to understand how the Cloud works.
+
+### Sizing & configuration option to create EC2 instances
+
+  * Operating System (OS): Linux(most popular), Windows, or even Mac OS
+  * How much compute power and cores (CPU)
+  * How much random-access memory (RAM)
+  * How much storage space:
+    * Network-attached (EBS & EFS)
+    * Hardware (EC2 Instance Store)
+  * Network card: speed of the card, Public IP address
+  * Bootstrap script(configure at first launch): which is called EC2 User Data
+
+  ### EC2 User Data
+
+  * It is possible to bootstrap our instances using an __EC2 User Data__ script.
+  * _bootstraping_ means launching commands when a machine starts
+  * That script is _only run once_ at the instance _first start_
+  * __EC2 User data__ has a very specific purpose, it is used to automate boot tasks such as:
+    * Installing updates
+    * Install software
+    * Downloading common files from the internet
+    * Anything you can think of, however the more you add into your __User Data script__ the more your instant has to do at boot time. 
+    * The __EC2 User Data Script__ runs with the root user so any command you have will have pseudo rights.
+
+### EC2 instance types: example
+ ________________________________________________________________________________
+|Instance     vCpu  Mem(GiB)   Storage               Network       EBS Bandwidth |
+|                                                  Performance         (Mbps)    |
+|________________________________________________________________________________|
+|t2.micro      1     1         EBS-Only          Low to Moderate                 |
+|t2.xlarge     4     16        EBS-Only              Moderate                    |
+|c5d.4xlarge   16    32        1x400 NVMe SSD     Up to 10 Gbps       4750       |
+|________________________________________________________________________________|
+
+  These are just few examples there are many more with different configurations. 
+
+  __t2.micro is part of the AWS free tier (up to 750 hours per month), used in this course__
+
+  ## Hands-On: Launching an EC2 Instance running Linux.
+
+  * We'll br launching our first virtual server using AWS Console
+  * This will allow us to get high-level approach to understanding some parameters for the configuration of your EC2 instances. 
+  * Then we will use EC2 user data script to configure our web server.
+  * We will learn how to start/stop/terminate our instance.
+
+  ### Create an EC2 Instance with EC2 User Data to have a website.
+
+    1. Search for EC2 service and open EC2 console.
+    2. Click __Instances__ on left hand side.
+    3. __Launch Instances__
+    4. __Choose Amazon Machine Image__, 'free-tier eligible' in my case, & next to instance type.
+    5. Choose an __Instance type__, t2.micro in my case, & next to configure instance.
+    6. In __Condifure Instance__ Left everything default in my case except __User Data__. Wrote a script to display some message in web browser after running the instance, & next to add storage
+    7. __Add storage__, default in my case, & next to tags
+    8. You can give name to your instance in __Add Tags__, or name of department, team, & next
+    9. In __Configure Security Group__. 
+    10. __Review and Launch__
+    
+
+  
+
+
+
