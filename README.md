@@ -330,14 +330,61 @@ _________________________________________________________________________
     3. __Launch Instances__
     4. __Choose Amazon Machine Image__, 'free-tier eligible' in my case, & next to instance type.
     5. Choose an __Instance type__, t2.micro in my case, & next to configure instance.
-    6. In __Condifure Instance__ Left everything default in my case except __User Data__. Wrote a script to display some message in web browser after running the instance, & next to add storage
+    6. In __Condifure Instance__ Left everything default in my case except __User Data__. Wrote a script to display some
+    message in web browser after running the instance, & next to add storage
     7. __Add storage__, default in my case, & next to tags
     8. You can give name to your instance in __Add Tags__, or name of department, team, & next
     9. In __Configure Security Group__. 
     10. __Review and Launch__
     
+## EC2 Instance Types Basics
 
+### EC2 Instance Types Overview
+  * You can use different types of EC2 instances that are optimised for different use cases [here](https://aws.amazon.com/ec2/instance-types/)
+  * For now there are seven different types of EC2 instances
+    1. General Purpose
+    2. Compute Optimized
+    3. Memory Optimized
+    4. Accelerated Computing
+    5. Storage Optimized
+    6. Instance Features
+    7. Measuring Instance Performance
+  * For each type of instance there are different families. 
   
+  * Naming convention of instances, for example: __m5.2xlarge__
+    * m: instance class - this is going to be General Purpose
+    * 5: generation (AWS improves them over time)
+    * 2xlarge: size within the instance class
 
+### EC2 Instance Types - General Purpose
+  * Great for a diversity of workloads such as web servers or code repositories.
+  * They will have a good balance between:
+    * Compute
+    * Memory
+    * Networking
 
+### EC2 Instance Types - Compute Optimized
+  * Great for compute-intensive tasks that require high performance processors:
+    * Batch processing workloads
+    * Media transcoding
+    * High performance web servers
+    * High performance computing (HPC)
+    * Scientific modeling & machine learning
+    * Dedicated gaming servers
 
+### EC2 Instance Types - Memory Optimized
+  * Fast performance for workloads that process large data sets in memory
+  * Use cases: 
+    * High performance, relational/non-relational databases
+    * Distributed web scale cache stores
+    * In-memory databases optimized for BI(Business Intelligence)
+    * Application performing real-time processing of big unstructured data
+
+### EC2 Instance Types - Storage Optimized
+  * Great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage.
+  * Use cases:
+    * High frequency online transaction processing(OLTP) systens
+    * Relational & NoSQL databases
+    * Cache for in-memory databases (for example, Redis)
+    * Data warehousing applications
+    * Distributed file systems
