@@ -446,6 +446,7 @@ As a general rule, when you get time out in AWS when you connect to EC2 instance
   3. It will ask for confrimation? If you want to connect say __yes__ 
 
   _opps_ failed. It is because we do not want anyone to access to our machine. In order to access to our EC2 instance we need key file that was generated. 
+
   4. Find where you have saved your EC2.pem file.
   5. Use following command `ssh -i ~/aws-documents/EC2Tutorial.pem ec2-user@3.12.107.67`
   6. After this you will get __!!WARNING!! UNPROTECTED PRIVATE FILE__. You will get _bad permessions_ and won't allow to access SSH.
@@ -465,6 +466,7 @@ As a general rule, when you get time out in AWS when you connect to EC2 instance
   * IAMReadOnlyAccess policy is attached to DemoRoleForEC2.
 
 ### We are going to attach this DemoRoleForEC2 onto our EC2 instance to provide it with credentials. 
+
 ### How do we do this?
   1. Go to DemoRoleForEC2 in IAM >> Roles
   2. If you check in you EC2 instance under security there, IAM role is empty. 
