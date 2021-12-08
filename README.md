@@ -330,7 +330,7 @@ _________________________________________________________________________
     3. __Launch Instances__
     4. __Choose Amazon Machine Image__, 'free-tier eligible' in my case, & next to instance type.
     5. Choose an __Instance type__, t2.micro in my case, & next to configure instance.
-    6. In __Condifure Instance__ Left everything default in my case except __User Data__. Wrote a script to display some
+    6. In __Configure Instance__ Left everything default in my case except __User Data__. Wrote a script to display some
     message in web browser after running the instance, & next to add storage
     7. __Add storage__, default in my case, & next to tags
     8. You can give name to your instance in __Add Tags__, or name of department, team, & next
@@ -388,3 +388,94 @@ _________________________________________________________________________
     * Cache for in-memory databases (for example, Redis)
     * Data warehousing applications
     * Distributed file systems
+
+## Security Groups and Classic Ports Overview
+
+### Introduction to Security Groups
+  * __Security Groups__ are the fundamental of network security in AWS
+  * They control how traffic is allowed into or out of our EC2 instances
+  
+  * Security groups only contains _allow_ rules.
+  * Security groups rules can reference by IP or by security group
+
+  For example: 
+    We are on computer on our internet i.e. (www) and we are trying to access an EC2 instance from our computer. We are going to create a security group around EC2 instance and then this security group is going to have rules. These rules are going to say weather or not some inbound traffic (traffic coming from your computer to EC2 instance) from outside into the EC2 instance is allowed. And also if the EC2 instance can perfrom outbound traffic (to talk from EC2 into the internet).
+
+### Security Groups
+### Deeper Dive
+  * Security groups are acting as a "firewall" on EC2 instances
+  * They regulate:
+    * Access to Ports
+    * Authorised IP ranges - IPv4 and IPv6
+    * Control of inbound network (from outside to the instance)
+    * Control of outbound network (from the instance to other)
+
+### Security Groups, Good to Know
+  * Can be attached to multiple instances
+  * Locked down to a region/VPC combination
+  * Does live "outside" the EC2 - if the traffic is blocked the EC2 instance won't see it
+  * __It's good to maintain one seperate security group for SSH access__
+  * If your application is not accessible(time out), then it's a security group issue
+  * If your application gives a "connection refused" error, then it's an application error or it's not launched
+  * All inbound traffic is __blocked__ by default
+  * All outbound traffic is __authorized__ by default
+
+### Classic Ports to know
+  * 22 = SSH (Secure Shell) - log into a Linux instance
+  * 21 = FTP (File Transfer Protocol) - upload files into file share
+  * 22 = SFTP (Secure File Transfer Protocol) - upload files using SSH
+  * 80 = HTTP - access unsecured websites
+  * 443 = HTTPS - access secured websites
+  * 3839 = RDP (Remote Desktop Protocol) - log into a Windows instance
+
+### NOTE
+As a general rule, when you get time out in AWS when you connect to EC2 instance this has to be Security Group issue. 
+
+## SSH Summary Table
+### How do you connect inside of your server to perform some maintenance or action?
+  * SSH is a command line utility that can be used on Mac, Linux, and Windows 10 or greater to perform some maintenance or action. 
+  * For any version of Windows we could use Putty to do SSH.
+  * EC2 instance connect is going to use web browser to connect to EC2 instance. It is valid for all Linux, Mac and Windows.
+
+## How to SSH into your EC2 Instance Linux/Mac OS X?
+  * We will learn how to SSH into your EC2 instance using Linux/Mac
+  * SSH is one of the most inportant function. It allows you to control as remote machine, all using the command line.
+
+  1. Make sure port 22 is allowed in security group of instance you are trying to access. 
+  2. Use command in terminal `ssh ec2-user@public_IPv4_address`
+  3. It will ask for confrimation? If you want to connect say __yes__ 
+
+  _opps_ failed. It is because we do not want anyone to access to our machine. In order to access to our EC2 instance we need key file that was generated. 
+  4. Find where you have saved your EC2.pem file.
+  5. Use following command `ssh -i ~/aws-documents/EC2Tutorial.pem ec2-user@3.12.107.67`
+  6. After this you will get __!!WARNING!! UNPROTECTED PRIVATE FILE__. You will get _bad permessions_ and won't allow to access SSH.
+  When you first download a file the permission is 0644 and thats too open. Basically private key can leak because the private key could be accessed by other.  
+  7. To fix this we use following command `chmod 0400 keyName.pem`, this gives owner to read.
+  8. Use same command `ssh -i ~/aws-documents/EC2Tutorial.pem ec2-user@3.12.107.67`
+  9. :tada: You are connected to EC2 instance.
+
+## EC2 Instance Roles Demo using SSH
+
+  * Amazon Linux 2 comes with AWS CLI. If we use `aws --version`, it will shoud AWS CLI version. 
+  * You could use AWS command here such as `aws iam list-users`, but you will need to configure credentials. 
+  * `aws configure` can be used to configure but it is a __NO NO__. The reason is if we run `aws configure` and enter our personal details onto this EC2 instance then anyone else in our account could again connect to our EC2 instance, for example using __EC2 Instance Connect__ and retrieve the value of these credentials in our instance.
+  * As a rule of thumb never enter your IAM access keys ID, and Secred Access Key into EC2 instance. 
+
+  __Instead__ what we have to do is use __IAM Roles__. We have created __IAM Roles__ in IAM service >> Roles, which is DemoRoleForEC2.
+  * IAMReadOnlyAccess policy is attached to DemoRoleForEC2.
+
+### We are going to attach this DemoRoleForEC2 onto our EC2 instance to provide it with credentials. 
+### How do we do this?
+  1. Go to DemoRoleForEC2 in IAM >> Roles
+  2. If you check in you EC2 instance under security there, IAM role is empty. 
+  3. Go to our instances. 
+  4. Click on __Action__
+  5. Click on __Security__
+  6. And __Modify IAM Role__
+  7. There you could _Choose IAM Role_
+  8. Select the IAM role, DemoRoleForEC2 in my case. 
+  9. Click on save to attach this IAM role to the instance. 
+  10. Result of this is, if you now run `aws iam list-users` in your EC2 instance in which you attached role, you will be able to view users. 
+
+  * You are seeing results because IAMReadOnlyAccess policy is attached to DemoRoleForEC2 instance IAM Role. If this is policy is detached then you won't be able to view users in EC2 instance. 
+
