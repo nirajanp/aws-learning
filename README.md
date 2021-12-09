@@ -481,3 +481,70 @@ As a general rule, when you get time out in AWS when you connect to EC2 instance
 
   * You are seeing results because IAMReadOnlyAccess policy is attached to DemoRoleForEC2 instance IAM Role. If this is policy is detached then you won't be able to view users in EC2 instance. 
 
+## EC2 Instances Purchasing Options
+We have seen EC2 instances and virtual servers on cloud, so far we are using:
+  * __On-Demand Instances__: short workload, predictable pricing
+
+Sometime we might know we will need servers for longer time, then we can get cost savings by saying that to AWS. First option is to use
+  * __Reserved Instance__ (Minimum 1 year)
+  Its types are:
+    * Reserved Instances: long workloads (think of a database)
+    * Convertible Reserved Instances: long workloads with flexible instances (You want to change types of instances over time)
+    * Scheduled Reserved Instances: example every Thursday between 3 and 6 pm
+  * __Spot Instances__: short work loads, cheap, can loose instances(less reliable)
+  * __Dedicated Hosts__: book an entire physical server, control instance placement
+
+__Exam is going to ask question on choose best EC2 instance based maximum amount of cost saving or to comply with some rule__
+
+### EC2 On Demand Instance
+  * Pay for what you use:
+    * Linux or Windows - billing per second, after first minute
+    * All other OS - billing per hour
+  * Has the highest cost but no upfront payment
+  * No long-term commitment
+
+  * Recommended for __short-term__ and __un-interrupted workloads__, where you can't predict how the application will behave
+
+### EC2 Reserved Instance
+  * Up to 75% discount compared to On-demand
+  * Reservation period: 1 year = you get discount discount | 3 years = you get even bigger discount
+  * Purchasing options: no upfront | partial upfront = some more discount | All upfront = even more discount
+  * Reserve a specific instance type, for example you will have to specify t2.micro, c5.xlarge
+  * Recommended for steady-state usage applications. For example database, if you know you will need database for next 3 years - reserving that instance will bring huge cost savings.
+
+  #### Convertible Reserved Instance
+    * Can chance the EC2 instance type
+    * Upto 54% discount.
+
+  ### Scheduled Reserved Instances
+    * launch within time window you reserve
+    * when you require a fraction of day / week / month
+    * Still need commitment over 1 to 3 years
+
+### EC2 Spot Instance
+  * Can get a discount up to 90% compared to On-demand
+  * Instances that you can "lose" at any point of time if your max price is less that the current spot price. 
+  * The MOST cost-efficient instances in AWS
+
+  * Useful for workloads that are relilient to failure
+    * Batch jobs
+    * Data analysis
+    * Image processing
+    * Any distributed workloads: if workload is distributed among two servers, and if one fails other still know how to work without any affect of terminated server
+    * Workloads with a flexible start and end time
+
+  * Not suitable for critical jobs or databases.
+
+### EC2 Dedicated Hosts
+
+  * An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use. Dedicated Hosts can help you address __complicance requirements__ and reduce cost by allowing you to use your __existing server-bound software licences__.
+  * Allocated for your account for a 3 year period reservation
+  * More expensive
+  
+  * Useful for software that have complicated licencing model (BYOL - Bring Your Own Licence)
+  * Or for companies that have strong regulatory or compliance needs
+
+### EC2 Dedicated Instances
+  * Instances running on hardware that's dedicated to you
+  * May share hardware with other instances in same account
+  * No control over instance placement (can move hardware after Stop/ Start)
